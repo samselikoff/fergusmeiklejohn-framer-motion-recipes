@@ -15,11 +15,14 @@ module.exports = {
       fontFamily: {
         sans: ["Inter var", ...defaultTheme.fontFamily.sans],
       },
+      aspectRatio: {
+        "3/2": "3 / 2",
+        "1/3": "1 / 3",
+      },
     },
   },
   plugins: [require("@tailwindcss/forms"), addVariablesForColors],
 };
-
 
 // This plugin adds each Tailwind color as a global CSS variable, e.g. var(--gray-200).
 function addVariablesForColors({ addBase, theme }) {
