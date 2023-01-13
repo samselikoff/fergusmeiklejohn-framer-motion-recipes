@@ -6,32 +6,25 @@ import {
   useMotionValueEvent,
   useMotionTemplate,
 } from "framer-motion";
-import { useEffect, useState } from "react";
 
 const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
-const scrollDistance = 200; // pixels user will scroll to complete header animation
+const scrollDistance = 300; // pixels user will scroll to complete header animation
 
 function useBoundedScroll(bounds: number) {
   const { scrollY } = useScroll();
-
-  const [previousScrollY, setPreviousScrollY] = useState(0);
-  const [scrollYDiff, setScrollYDiff] = useState(0);
+  const scrollYBounded = useMotionValue(0);
 
   useMotionValueEvent(scrollY, "change", (value) => {
-    setScrollYDiff(value - previousScrollY);
-    setPreviousScrollY(value);
+    const previousScrollY = scrollY.getPrevious();
+    const scrollYDiff = value - previousScrollY;
+    scrollYBounded.set(clamp(scrollYBounded.get() + scrollYDiff, 0, bounds));
   });
 
-  const scrollYBounded = useMotionValue(0);
   const scrollYBoundedProgress = useTransform(
     scrollYBounded,
     [0, bounds],
     [0, 1]
   );
-
-  useEffect(() => {
-    scrollYBounded.set(clamp(scrollYBounded.get() + scrollYDiff, 0, bounds));
-  }, [scrollYDiff]);
 
   return { scrollYBoundedProgress };
 }
