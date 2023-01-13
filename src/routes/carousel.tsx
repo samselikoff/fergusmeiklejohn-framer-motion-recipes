@@ -71,7 +71,7 @@ export default function Carousel() {
                   className="absolute left-2 top-1/2 -mt-4 flex h-10 w-10 items-center justify-center rounded-full bg-white"
                   onClick={() => setIndex(index - 1)}
                 >
-                  <ChevronLeftIcon className="h-6 w-6" />
+                  <ChevronLeftIcon className="mr-1 h-6 w-6" />
                 </motion.button>
               )}
             </AnimatePresence>
@@ -85,7 +85,7 @@ export default function Carousel() {
                   className="absolute right-2 top-1/2 -mt-4 flex h-10 w-10 items-center justify-center rounded-full bg-white"
                   onClick={() => setIndex(index + 1)}
                 >
-                  <ChevronRightIcon className="h-6 w-6" />
+                  <ChevronRightIcon className="ml-1 h-6 w-6" />
                 </motion.button>
               )}
             </AnimatePresence>
