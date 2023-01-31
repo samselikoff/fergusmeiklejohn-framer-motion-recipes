@@ -57,7 +57,7 @@ export default function Page() {
                   key={image}
                   src={image}
                   animate={{ opacity: i === index ? 1 : 0.3 }}
-                  className="aspect-[3/2] object-cover"
+                  className="aspect-[3/2] w-full flex-shrink-0 object-cover"
                 />
               ))}
             </motion.div>
@@ -112,6 +112,7 @@ export default function Page() {
                   whileHover={{ opacity: 1 }}
                   initial={false}
                   animate={i === index ? "active" : "inactive"}
+                  className="flex-shrink-0"
                   variants={{
                     active: {
                       marginLeft: `${margin}%`,
